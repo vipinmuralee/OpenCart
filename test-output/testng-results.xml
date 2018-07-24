@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[
+Apple Cinema 30" is retrived in search]]>
+    </line>
+    <line>
+      <![CDATA[
+Tri-band UMTS — 850MHz, 1900MHz, 2100MHz is the 5th Feature in the Product]]>
+    </line>
+    <line>
+      <![CDATA[
+ Expected: Your order has been placed! Actual: Checkout
+Step 1: Checkout Options
+Step 2: Billing Details
+
+Step 3: Delivery Details
+
+Step 4: Delivery Method
+Step 5: Payment Method
+Step 6: Confirm Order
+Product Name Model Quantity Unit Price Total
+Palm Treo Pro Product 2 6 $279.99 $1,679.94
+Sub-Total: $1,679.94
+Flat Shipping Rate: $5.00
+Total: $1,684.94]]>
+    </line>
+    <line>
+      <![CDATA[
+ Expected: Your shopping cart is empty! Actual: Use Gift Certificate  (0.80kg)
+Image Product Name Model Quantity Unit Price Total
+Palm Treo Pro Product 2
+$279.99 $1,679.94
+What would you like to do next?
+Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.
+Use Coupon Code
+Estimate Shipping & Taxes
+Use Gift Certificate
+
+Sub-Total: $1,679.94
+Flat Shipping Rate: $5.00
+Total: $1,684.94
+Continue Shopping
+Checkout]]>
+    </line>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="53833" started-at="2018-07-14T08:57:12Z" finished-at="2018-07-14T08:58:06Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="53833" started-at="2018-07-14T08:57:12Z" finished-at="2018-07-14T08:58:06Z">
+      <class name="TrainingTest1.ProductComparison">
+        <test-method status="PASS" signature="initialize()[pri:0, instance:TrainingTest1.ProductComparison@475530b9]" name="initialize" is-config="true" duration-ms="5063" started-at="2018-07-14T14:27:12Z" finished-at="2018-07-14T14:27:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method status="PASS" signature="productcompare()[pri:0, instance:TrainingTest1.ProductComparison@475530b9]" name="productcompare" duration-ms="46663" started-at="2018-07-14T14:27:17Z" finished-at="2018-07-14T14:28:04Z">
+          <reporter-output>
+            <line>
+              <![CDATA[
+Apple Cinema 30" is retrived in search]]>
+            </line>
+            <line>
+              <![CDATA[
+Tri-band UMTS — 850MHz, 1900MHz, 2100MHz is the 5th Feature in the Product]]>
+            </line>
+            <line>
+              <![CDATA[
+ Expected: Your order has been placed! Actual: Checkout
+Step 1: Checkout Options
+Step 2: Billing Details
+
+Step 3: Delivery Details
+
+Step 4: Delivery Method
+Step 5: Payment Method
+Step 6: Confirm Order
+Product Name Model Quantity Unit Price Total
+Palm Treo Pro Product 2 6 $279.99 $1,679.94
+Sub-Total: $1,679.94
+Flat Shipping Rate: $5.00
+Total: $1,684.94]]>
+            </line>
+            <line>
+              <![CDATA[
+ Expected: Your shopping cart is empty! Actual: Use Gift Certificate  (0.80kg)
+Image Product Name Model Quantity Unit Price Total
+Palm Treo Pro Product 2
+$279.99 $1,679.94
+What would you like to do next?
+Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.
+Use Coupon Code
+Estimate Shipping & Taxes
+Use Gift Certificate
+
+Sub-Total: $1,679.94
+Flat Shipping Rate: $5.00
+Total: $1,684.94
+Continue Shopping
+Checkout]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- productcompare -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:TrainingTest1.ProductComparison@475530b9]" name="closeBrowser" is-config="true" duration-ms="2095" started-at="2018-07-14T14:28:04Z" finished-at="2018-07-14T14:28:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- TrainingTest1.ProductComparison -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

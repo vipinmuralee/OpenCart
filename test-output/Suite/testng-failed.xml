@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="resources.listeners"/>
+  </listeners>
+  <test name="Training test case Number 1(failed)">
+    <classes>
+      <class name="TrainingTest1.Registration">
+        <methods>
+          <include name="createAccount"/>
+          <include name="initialize"/>
+          <include name="closeBrowser"/>
+        </methods>
+      </class> <!-- TrainingTest1.Registration -->
+    </classes>
+  </test> <!-- Training test case Number 1(failed) -->
+</suite> <!-- Failed suite [Suite] -->
