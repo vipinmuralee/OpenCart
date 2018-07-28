@@ -1,4 +1,4 @@
-package TrainingTest1;
+package StepDefinition;
 
 import java.io.IOException;
 import java.util.logging.Logger;

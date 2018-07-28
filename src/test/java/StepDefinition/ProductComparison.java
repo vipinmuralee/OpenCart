@@ -1,11 +1,9 @@
-package TrainingTest1;
+package StepDefinition;
 
 import java.io.IOException;
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import pageObjects.CartPage;
 import pageObjects.HomePage;
 import pageObjects.MyAccount;
@@ -13,14 +11,14 @@ import pageObjects.PhonePDAPage;
 import resources.base;
 
 public class ProductComparison extends base{
-	@BeforeTest
+	@Given("^I login to Opencart Application$")
 	public void initialize() throws IOException
 	{
 		driver =initializeDriver();
 		driver.get(prop.getProperty("url"));
 	}
 	
-	@Test
+	@And("^In Between Steps$")
 	public void productcompare() throws IOException, InterruptedException {
 		HomePage home = new HomePage(driver);
 		MyAccount account = new MyAccount(driver);
@@ -43,7 +41,7 @@ public class ProductComparison extends base{
 		home.LogOut();
 	}
 	
-	@AfterTest
+	@And("^I Close the browser$")
 	public void closeBrowser() {
 		driver.close();
 	}
