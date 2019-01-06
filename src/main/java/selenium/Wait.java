@@ -18,22 +18,23 @@ public class Wait {
 	public static void untilJqueryIsDone(WebDriver driver) {
 		untilJqueryIsDone(driver, FileReaderManager.getInstance().getConfigFileReader().getImplicitlyWait());
 	}
-	
+
 	public static void untilJqueryIsDone(WebDriver driver, Long timeoutinseconds) {
-		until(driver, (d) ->
-		{
-			Boolean isJqueryCallDone  = (Boolean)((JavascriptExecutor) driver).executeScript("return jQuery.active ==0");
-			if(!isJqueryCallDone) {
-				System.out.println("JQuery call is in progress");
+		until(driver, new Function<WebDriver, Boolean>() {
+			public Boolean apply(WebDriver d) {
+				Boolean isJqueryCallDone = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active ==0");
+				if (!isJqueryCallDone) {
+					System.out.println("JQuery call is in progress");
+				}
+				return isJqueryCallDone;
 			}
-			return isJqueryCallDone;
 		},	timeoutinseconds);
-		
+
 	}
 	public static void untilPageLoadComplete(WebDriver driver) {
 		untilPageLoadComplete(driver, FileReaderManager.getInstance().getConfigFileReader().getImplicitlyWait());
 	}
- 
+
 	public static void untilPageLoadComplete(WebDriver driver, long timeoutInSeconds){
 		until(driver, (d) ->
 			{
@@ -44,7 +45,7 @@ public class Wait {
 	}
 	public static void until(WebDriver driver, Function<WebDriver, Boolean> waitCondition) {
 		until(driver, waitCondition, FileReaderManager.getInstance().getConfigFileReader().getImplicitlyWait());
-		
+
 	}
 	@SuppressWarnings("deprecation")
 	public static void until(WebDriver driver, Function<WebDriver, Boolean> waitCondition, long timeoutinseconds) {
