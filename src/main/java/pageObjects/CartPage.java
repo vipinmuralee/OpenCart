@@ -3,15 +3,18 @@ package pageObjects;
 import java.io.*;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import resources.utils;
+
+import static org.testng.Assert.assertTrue;
 
 public class CartPage extends utils{
 
@@ -36,7 +39,7 @@ public class CartPage extends utils{
 	@FindBy(id = "button-confirm")
 	private WebElement ConfirmOrder;
 	@FindBy(id = "content")
-	private WebElement Message;
+    public WebElement Message;
 	@FindBy(xpath = "//table[@class='table table-bordered table-hover']")
 	private WebElement OrderTable;
 	@FindBy(xpath = "//*[@id='content']/div[3]/div/div/div[1]/a/img")
@@ -51,6 +54,27 @@ public class CartPage extends utils{
     private WebElement Close;
     @FindBy(id = "tab-description")
     public WebElement ProductDescription;
+    @FindBy(xpath = "//input[@name='payment_address' and @value='new']")
+	private WebElement NewAddress;
+	@FindBy(id = "input-payment-firstname")
+	private WebElement FirstName;
+	@FindBy(id = "input-payment-lastname")
+	private WebElement LastName;
+	@FindBy(id = "input-payment-company")
+	private WebElement Company;
+	@FindBy(id = "input-payment-address-1")
+	private WebElement Address1;
+	@FindBy(id = "input-payment-address-2")
+	private WebElement Address2;
+	@FindBy(id = "input-payment-city")
+	private WebElement City;
+	@FindBy(id = "input-payment-postcode")
+	private WebElement PostCode;
+	@FindBy(id = "input-payment-country")
+	private WebElement Country;
+	@FindBy(id = "input-payment-zone")
+	private WebElement Zone;
+
 	public CartPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -60,8 +84,7 @@ public class CartPage extends utils{
 		ShoppingCart.click();
 	}
 	
-	public void checkOut() throws InterruptedException {
-		CheckOut.click();	
+	public void checkOut(WebDriver driver) throws InterruptedException {
 		Thread.sleep(2000);
 		Continue.click();
 		Thread.sleep(2000);
@@ -73,16 +96,21 @@ public class CartPage extends utils{
 		PayementMethod.click();
 		Thread.sleep(2000);
 		ConfirmOrder.click();
-		Thread.sleep(2000);
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
+        ConfirmOrder.click();
+        Thread.sleep(2000);
 	}
 	
 	public void validateCheckOut() {
-		verifyValue(Message, "Your order has been placed!");
+        String actualString = Message.getText();
+        assertTrue(actualString.contains("Your order has been placed!"));
 	}
 	
 	public void validateCart() {
 		ShoppingCart.click();
-		verifyValue(Message, "Your shopping cart is empty!");
+        String actualString = Message.getText();
+        assertTrue(actualString.contains("Your shopping cart is empty!"));
 	}
 	
 	public void saveFlatFile(String fileName) throws IOException {
@@ -123,4 +151,37 @@ public class CartPage extends utils{
             System.out.println(imageName);
         }
     }
+
+	public void addNewAddress() throws InterruptedException {
+		Thread.sleep(3000);
+		NewAddress.click();
+		FirstName.sendKeys("New");
+		LastName.sendKeys("Name");
+		Company.sendKeys("Wipro");
+		Address1.sendKeys("Address1");
+		Address2.sendKeys("Address2");
+		City.sendKeys("Chennai");
+		PostCode.sendKeys("600119");
+		Select country = new Select(Country);
+		country.selectByVisibleText("India");
+		Select zone = new Select(Zone);
+		zone.selectByVisibleText("Tamil Nadu");
+	}
+
+	public void continueChekout(WebDriver driver) throws InterruptedException {
+		Continue.click();
+		Thread.sleep(2000);
+		ShippingContinue.click();
+		Thread.sleep(2000);
+		ShippingMethod.click();
+		Thread.sleep(2000);
+		AgreeCheck.click();
+		PayementMethod.click();
+		Thread.sleep(2000);
+		ConfirmOrder.click();
+		Thread.sleep(2000);
+        driver.switchTo().alert().accept();
+        ConfirmOrder.click();
+        Thread.sleep(2000);
+	}
 }

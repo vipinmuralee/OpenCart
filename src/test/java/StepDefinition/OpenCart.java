@@ -1,12 +1,15 @@
 package StepDefinition;
 
+import java.io.File;
 import java.io.IOException;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import pageObjects.CartPage;
 import pageObjects.HomePage;
@@ -34,7 +37,7 @@ public class OpenCart extends base {
 		phone.phoneTab();
 		phone.saveFlatFile("feature_flatFile");
 		cart.addtoCart();
-		cart.checkOut();
+		cart.checkOut(driver);
 		driver.switchTo().alert().accept();
 		cart.validateCheckOut();
 		cart.validateCart();
@@ -54,7 +57,6 @@ public class OpenCart extends base {
 	public void iLoginWithInvalidEmail() throws IOException {
 	    HomePage home = new HomePage(driver);
 		home.invalidEmail();
-        Assert.assertEquals(home.ErrorMessage.getText(), "Warning: No match for E-Mail Address and/or Password.");
 	}
 
 	@And("^I login with invalid Password$")
@@ -99,8 +101,7 @@ public class OpenCart extends base {
     @When("^I Confirm order$")
     public void iConfirmOrder() throws Throwable {
         CartPage cart = new CartPage(driver);
-        cart.checkOut();
-        driver.switchTo().alert().accept();
+        cart.checkOut(driver);
         cart.validateCheckOut();
         cart.validateCart();
     }
@@ -139,5 +140,46 @@ public class OpenCart extends base {
     public void iViewAdditionalImagesForTheItem() throws Throwable {
         CartPage cart = new CartPage(driver);
         cart.viewImages(driver);
+    }
+
+    @And("^I click on Edit Account$")
+    public void iClickOnEditAccount() throws Throwable {
+        HomePage home = new HomePage(driver);
+        home.EditAccount.click();
+    }
+
+    @Then("^I Edit the phone number (\\d+)$")
+    public void iEditThePhoneNumber(String phoneNumber) throws Throwable {
+        HomePage home = new HomePage(driver);
+        home.editPhone(phoneNumber);
+    }
+
+    @When("^I Sort and verify using (.*)$")
+    public void iSortAndVerifyUsing(String sort) throws Throwable {
+        HomePage home = new HomePage(driver);
+        home.sortBy(driver, sort);
+    }
+
+    @When("^I click on CheckOut$")
+    public void iClickOnCheckOut() throws Throwable {
+        HomePage home = new HomePage(driver);
+        home.CheckOut.click();
+    }
+
+    @Then("^I validate the error message$")
+    public void iValidateTheErrorMessage() throws Throwable {
+        CartPage cart = new CartPage(driver);
+        cart.validateCart();
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("D:\\Selenium\\SeleniumTopGear\\OpenCart\\screenshots\\screenshot.png"));
+    }
+
+    @And("^I add New Address details$")
+    public void iAddNewAddressDetails() throws Throwable {
+        CartPage cart = new CartPage(driver);
+        cart.addNewAddress();
+        cart.continueChekout(driver);
+        cart.validateCheckOut();
+        cart.validateCart();
     }
 }
