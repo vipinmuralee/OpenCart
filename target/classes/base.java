@@ -20,13 +20,13 @@ public Properties prop;
 	{
 		
 		prop= new Properties();
-		FileInputStream fis=new FileInputStream("D:\\Selenium\\SeleniumTopGear\\OpenCart\\src\\main\\java\\resources\\\\data.properties");
+		FileInputStream fis=new FileInputStream("H:\\OpenCart\\src\\main\\java\\resources\\\\data.properties");
 		
 		prop.load(fis);
 		String browserName=prop.getProperty("browser");
 		System.out.println(browserName);
 	
-		System.setProperty("webdriver.chrome.driver", "D://Setup//chromedriver//chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "H://Setup//chromedriver//chromedriver.exe");
 		driver= new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
