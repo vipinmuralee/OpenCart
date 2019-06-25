@@ -7,10 +7,11 @@ import com.cucumber.listener.Reporter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import managers.FileReaderManager;
+import org.testng.annotations.AfterTest;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "src/test/resources/Features",
+		features = "src/test/resources/PageObjectModel/Features/OpenCart.feature",
 		glue = "StepDefinition",
 		monochrome = true,
 		plugin = {"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}

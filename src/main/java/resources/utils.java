@@ -48,7 +48,7 @@ public class utils {
 	public FileInputStream fis;
 	
 	public String getCelldata(String excelData, int rownum,int col) throws IOException	{
-			fis =new FileInputStream("D:\\Selenium\\SeleniumTopGear\\OpenCart\\exceldata\\" +excelData+ ".xlsx");
+			fis =new FileInputStream("H:\\OpenCart\\exceldata\\" +excelData+ ".xlsx");
 			wb=new XSSFWorkbook(fis);
 			sheet=wb.getSheet("Data");
 			row=sheet.getRow(rownum);
